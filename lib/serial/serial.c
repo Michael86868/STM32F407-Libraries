@@ -6,8 +6,8 @@ void Uart2Config(void)
 	RCC->APB1ENR |= (1<<17);  // Povolení hodinovího signílu pro UART2
 	RCC->AHB1ENR |= (1<<0); // Povolení hodinovího signílu pro port A
 	
-	GPIOA->MODER |= (2<<4);  // Nastavení alternativní funkce pro pin PA2 [4:0]
-	GPIOA->MODER |= (2<<6);  // Nastavení alternativní funkce pro pin PA3 [6:0]
+	GPIOA->MODER |= (2<<4);  // Nastavení alternativní funkce pro pin PA2
+	GPIOA->MODER |= (2<<6);  // Nastavení alternativní funkce pro pin PA3
 	
 	GPIOA->OSPEEDR |= (3<<4) | (3<<6);  //Nastavení rychlosti na nejvyssi (High Speed)
 	
@@ -35,4 +35,13 @@ void UART2_SendChar(unsigned char c)
 void UART2_SendString(char *string)
 {
 	while (*string) UART2_SendChar (*string++);
+}
+
+uint8_t UART2_GetChar (void)
+{
+	do{
+		while (!(USART2->SR & (1<<5))); // Pockani na precteni vsech dat z DR registru pomoci hodinoveho signalu
+	}while(USART2->DR == '\n' || USART2->DR == '\r' || USART2->DR == '\b'); //Platformio vraci i ENTER, kterym potvrdime odeslani ('\b' - backspace)
+
+	return USART2->DR; // Vraceni dat z DR registru
 }

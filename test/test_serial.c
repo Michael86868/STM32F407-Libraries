@@ -20,7 +20,8 @@ int main(void){
 
 	while(1)
 	{
-		UART2_SendString("\r\nVypis");
+		UART2_SendString("\r\nVypis: ");
+		UART2_SendChar(UART2_GetChar());
 		Delay(1000);
 	}
 	
