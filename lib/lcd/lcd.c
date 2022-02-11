@@ -10,7 +10,7 @@ const int en = 5;
 void LCD_config(void){
 	RCC->AHB1ENR |= (1UL << 4);
 	GPIOE->MODER |=  (1UL << 2*rs) | (1UL << 2*rw) | (1UL << 2*en) | (1UL << 2*data_pins[0]) | (1UL << 2*data_pins[1]) | (1UL << 2*data_pins[2]) | (1UL << 2*data_pins[3]);
-	GPIOE->OTYPER &= ~(1UL << rs) | ~(1UL << rw) &	~(1UL << en) & ~(1UL <<   data_pins[0]) & ~(1UL <<   data_pins[1]) & ~(1UL <<   data_pins[2]) & ~(1UL << data_pins[3]);
+	GPIOE->OTYPER &= ~(1UL << rs) & ~(1UL << rw) &	~(1UL << en) & ~(1UL <<   data_pins[0]) & ~(1UL <<   data_pins[1]) & ~(1UL <<   data_pins[2]) & ~(1UL << data_pins[3]);
 	GPIOE->OSPEEDR &= ~(3UL << 2*rs) & ~(3UL << 2*rw) & ~(3UL << 2*en ) & ~(3UL << 2*data_pins[0]) & ~(3UL << 2*data_pins[1]) & ~(3UL << 2*data_pins[2]) & ~(3UL << 2*data_pins[3]);  
 	GPIOE->OSPEEDR |=  (2UL << 2*rs) | (2UL << 2*rw) | (2UL << 2*en) | (2UL << 2*data_pins[0]) | (2UL << 2*data_pins[1]) | (2UL << 2*data_pins[2]) | (2UL << 2*data_pins[3]);
 	GPIOE->PUPDR &= ~(3UL << 2*rs) & ~(3UL << 2*rw) & ~(3UL << 2*en) & ~(3UL << 2*data_pins[0]) & ~(3UL << 2*data_pins[1]) & ~(3UL << 2*data_pins[2]) & ~(3UL << 2*data_pins[3]);
