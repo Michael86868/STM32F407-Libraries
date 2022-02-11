@@ -6,7 +6,7 @@
 #include "functions.h"
 #include <math.h>
 
-void Uart2Config(void);
+void UART2_Config(void);
 void UART2_SendChar(unsigned char c);
 void UART2_SendString(char *string);
 uint8_t UART2_GetChar(void);

@@ -1,7 +1,7 @@
 #include "serial.h"
 
 
-void Uart2Config(void)
+void UART2_Config(void)
 {
 	RCC->APB1ENR |= (1<<17);  // Povolení hodinovího signílu pro UART2
 	RCC->AHB1ENR |= (1<<0); // Povolení hodinovího signílu pro port A

@@ -1,5 +1,6 @@
 #include "stm32f407xx.h"
 #include "serial.h"
+#include "functions.h"
 
 void GPIOD_Config(){
 	RCC->AHB1ENR |= (1UL << 3);
@@ -12,7 +13,7 @@ void GPIOD_Config(){
 
 int main(void){
 	//GPIOD_Config();
-	Uart2Config();
+	UART2_Config();
     SystemCoreClockUpdate();
 	SysTick_Config(SystemCoreClock/10000);
 	
