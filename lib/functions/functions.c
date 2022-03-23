@@ -29,3 +29,9 @@ char* floatToString(float number){
 	sprintf(string, "%.2f", number);
 	return string;
 }
+
+char* usintToString(unsigned long int number){
+	static char string[50];
+	sprintf(string, "%ld", number);
+	return string;
+}
