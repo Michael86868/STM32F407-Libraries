@@ -155,3 +155,14 @@ void LCD_init(void){
 	LCD_noCursor();
 	LCD_clear();
 }
+
+void LCD_printf(const char * format, ...){
+	char string[128];
+	
+	va_list arglist;
+	va_start(arglist, format);
+
+	vsnprintf(string, sizeof(string), format, arglist);
+
+	LCD_print(string);
+}

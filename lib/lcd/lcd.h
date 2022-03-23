@@ -5,6 +5,8 @@
 #include "stm32f4xx.h"  
 #include <string.h>
 #include "functions.h"
+#include <stdarg.h>
+#include <stdio.h>
 
 //3 RS, 4 R/W, 5 E, 6..9 DB4..DB7
 
@@ -33,6 +35,7 @@ void LCD_rightToLeft(void);
 void LCD_createChar(char b[8], unsigned char adress);
 void LCD_printChar(unsigned char adress);
 void LCD_init(void);
+void LCD_printf(const char * format, ...) __attribute__((format(printf, 1, 2)));
 
 
 #endif
