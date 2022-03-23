@@ -2,10 +2,10 @@
 #include "button.h"
 #include "functions.h"
 
-void GPIOA_Config(){
-    RCC->AHB1ENR |= (1UL << 0);
+void GPIOB_Config(){
+    RCC->AHB1ENR |= (1UL << 1);
 
-    BTN_setPin(5);
+    BTN_setPin(14);
 }
 
 void GPIOD_Config(){
@@ -18,14 +18,14 @@ void GPIOD_Config(){
 
 
 int main(void){
-    GPIOA_Config();
+    GPIOB_Config();
 	GPIOD_Config();
     SystemCoreClockUpdate();
     SysTick_Config(SystemCoreClock/10000);
     
     while(1)
     {
-        if(BTN_readState(5)){
+        if(BTN_readState(14)){
             GPIOD->ODR |= (1UL << 12) | (1UL << 13) | (1UL << 14) | (1UL << 15);
         }else{
             GPIOD->ODR &= ~(1UL << 12) & ~(1UL << 13) & ~(1UL << 14) & ~(1UL << 15);
@@ -37,4 +37,3 @@ int main(void){
     
     return 0;
 }
-
